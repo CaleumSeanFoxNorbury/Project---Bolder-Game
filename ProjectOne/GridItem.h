@@ -8,4 +8,5 @@ public:
 	char GetSymbol();
 private:
 	const char symbol;
+	int x, y;
 };

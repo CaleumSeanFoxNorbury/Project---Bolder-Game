@@ -51,6 +51,9 @@
     <ClCompile Include="Bolder.cpp">
       <Filter>Source Files\Grid Objects</Filter>
     </ClCompile>
+    <ClCompile Include="GridBorder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files\Grid Objects</Filter>
     </ClInclude>
     <ClInclude Include="Bolder.h">
+      <Filter>Header Files\Grid Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GridBorder.h">
       <Filter>Header Files\Grid Objects</Filter>
     </ClInclude>
   </ItemGroup>
