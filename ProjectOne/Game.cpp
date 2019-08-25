@@ -9,6 +9,7 @@ void Game::run()
 	UserInterface ui_G;
 	person.RandomPosition();
 	bolder.RandomPosition();
+	bolder.setupBolder();
 	//TODO::MAKE SURE NOTHING OVERLAPS WITHIN THE GRID WHILE BEING POSITIONED RANDOMLY 
 	ui_G.DrawGrid(Prepare_Grid());
 	//TODO::PRING SCORES, NAME AND OTHER INFO FOR GAME(RUNNING INFO)
