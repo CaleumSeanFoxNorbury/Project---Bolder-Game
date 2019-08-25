@@ -1,11 +1,13 @@
 #pragma once
-#include"GridItem.h"
+#include"MoveableGridItem.h"
 #include<vector>
 
-class GridBorder :public GridItem {
+class GridBorder :public MoveableGridItem {
 public:
 	GridBorder(const char);
+	void Create_Position_Borders();
 private:
 	std::vector<GridBorder> border;
+	int gridBorader_x, gridBorader_y;
 
 };

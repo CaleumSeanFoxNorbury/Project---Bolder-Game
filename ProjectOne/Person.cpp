@@ -22,10 +22,10 @@ void Person::scamper(char k)
 		break;
 	case DOWN:
 		person_x = 0;
-		person_y - +1;
+		person_y = +1;
 		break;
 	}
-	//UPDATE CO-ORDIATES
+	//UPDATE CO-ORDIATES(PRE-conditions)
 	if (((Get_X() + person_x) >= 1) && ((Get_X() + person_x) <= 20) &&
 		((Get_Y() + person_y) >= 1) && ((Get_Y() + person_y) <= 20))
 	{

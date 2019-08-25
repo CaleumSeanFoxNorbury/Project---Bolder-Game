@@ -5,11 +5,11 @@
 class Bolder : public MoveableGridItem {
 public:
 	Bolder(const char);
-	void setupBolder();
-	void MoveBolder();
+	void MoveBolder(int);
+
+	int setupBolder();
 private:
-	int get_Direction();
-	void set_direction(int& bx, int& by);
+	void set_direction(int& bx, int& by, int& direction_choice);
 	RNG rng;
 	int bolder_x;
 	int bolder_y;

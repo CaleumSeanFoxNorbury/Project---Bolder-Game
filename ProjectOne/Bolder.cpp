@@ -4,39 +4,56 @@ Bolder::Bolder(const char symbol) : MoveableGridItem(rng.GetRandomValue(20), rng
 {
 }
 
-void Bolder::setupBolder()
-{
-	get_Direction();
-}
-
-void Bolder::MoveBolder() { //needs to be applied within a loop probs on game
-	int bolderx, boldery;
-	set_direction(bolderx, boldery);
-	Update_Position(bolderx, boldery);
-}
-
-int Bolder::get_Direction()
+int Bolder::setupBolder()
 {
 	int direction = rng.GetRandomValue(8);
 
-	do {
-		direction = rng.GetRandomValue(8);
-	} while (direction != 0);
-	
 	if (direction >= 1 && direction <= 8) {
 		return direction;
 	}
+	else if(direction = 0){
+		return direction += 2;
+	}
 }
 
-void Bolder::set_direction(int & bx, int & by)
+void Bolder::MoveBolder(int direction_choice) { //needs to be applied within a loop probs on game
+	int bolderx, boldery;
+	set_direction(bolderx, boldery, direction_choice);
+	Update_Position(bolderx, boldery);
+}
+
+void Bolder::set_direction(int & bx, int & by, int & direction_choice)
 {
+	assert(direction_choice >= 1 && direction_choice <= 8);
 	bx = 0; by = 0;
-	if (get_Direction() == 1) {
+	if (direction_choice == 1) {
+		by -= 1;
+		//maybe add another fucntion to keep taking it move and bounce off walls under all these ifs
+	}
+	if (direction_choice == 2) {
+		by -= 1;
 		bx += 1;
 	}
-	else {
-		bx = - 1;	//moving bolder 
-		by = - 1;	//moving bolder 
+	if (direction_choice == 3) {
+		bx += 1;
+	}
+	if (direction_choice == 4) {
+		bx += 1;
+		by += 1;
+	}
+	if (direction_choice == 5) {
+		by += 1;
+	}
+	if (direction_choice == 6) {
+		by += 1;
+		bx -= 1;
+	}
+	if (direction_choice == 7) {
+		bx -= 1;
+	}
+	if (direction_choice == 8) {
+		bx -= 1;
+		by -= 1;
 	}
 }
 

@@ -7,15 +7,16 @@ Game::Game(Player * player) : player(player), person(PERSON), bolder(BOLDER)
 void Game::run()
 {
 	UserInterface ui_G;
+	int Bolders_Direction = bolder.setupBolder();
+	
 	person.RandomPosition();
 	bolder.RandomPosition();
-	bolder.setupBolder();
 	//TODO::MAKE SURE NOTHING OVERLAPS WITHIN THE GRID WHILE BEING POSITIONED RANDOMLY 
 	ui_G.DrawGrid(Prepare_Grid());
 	//TODO::PRING SCORES, NAME AND OTHER INFO FOR GAME(RUNNING INFO)
 	key = ui_G.GetKeypressFromUser();
 	while (!game_ended(key)) {
-		bolder.MoveBolder();
+		bolder.MoveBolder(Bolders_Direction);
 		if (isArrowKeyCode(key)) {
 			person.scamper(key);
 			ui_G.DrawGrid(Prepare_Grid());

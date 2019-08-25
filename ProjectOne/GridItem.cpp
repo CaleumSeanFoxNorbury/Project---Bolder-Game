@@ -1,6 +1,6 @@
 #include "GridItem.h"
 
-GridItem::GridItem(const char symbol): symbol(symbol)
+GridItem::GridItem(const char symbol):symbol(symbol)
 {
 }
 
