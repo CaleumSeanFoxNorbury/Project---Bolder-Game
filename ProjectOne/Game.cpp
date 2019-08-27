@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(Player * player) : player(player), person(PERSON), bolder(BOLDER)
+Game::Game(Player * player) : player(player), person(PERSON), bolder(BOLDER), gridb_(GRIDBOARDERS) //NEEDS TO CHECK AS SHOULDNT LINK TO CONSTRUCTOR LINK
 {
 }
 
@@ -43,7 +43,12 @@ std::string Game::Prepare_Grid()
 					os << BOLDER;
 				}
 				else {
-					os << FREECELL;
+					if ((row == 0) && (col == 0)) {
+						os << GRIDBOARDER;
+					}
+					else {
+						os << FREECELL;
+					}
 				}
 			}
 		}
@@ -61,7 +66,7 @@ std::string Game::GameEnded(char key)
 {
 	std::ostringstream os;
 	if (key == QUIT) {
-		os << "Game Has Ended!" << std::endl;
+		os << "Game Has Ended!" << std::endl; // or prep end game message
 	}
 	return os.str();
 }
@@ -70,3 +75,11 @@ bool Game::isArrowKeyCode(int Keycode)
 {
 	return (Keycode == LEFT) || (Keycode == RIGHT) || (Keycode == UP) || (Keycode == DOWN);
 }
+
+/*
+					if ((row == gridb_.Get_X()) && (col == gridb_.Get_Y())) {
+						for (int i(0); i < gridb_.border.size(); i++) {
+							os << GRIDBOARDER;
+						}
+					}
+*/

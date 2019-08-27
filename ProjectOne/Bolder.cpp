@@ -26,6 +26,7 @@ void Bolder::set_direction(int & bx, int & by, int & direction_choice)
 {
 	assert(direction_choice >= 1 && direction_choice <= 8);
 	bx = 0; by = 0;
+	//replace all these with switch statements
 	if (direction_choice == 1) {
 		by -= 1;
 		//maybe add another fucntion to keep taking it move and bounce off walls under all these ifs
