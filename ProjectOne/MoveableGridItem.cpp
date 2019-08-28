@@ -40,6 +40,12 @@ void MoveableGridItem::RandomPosition()
 	Set_XY(rng.GetRandomValue(20), rng.GetRandomValue(20));
 }
 
+std::ostream & operator<<(std::ostream & os, MoveableGridItem & rhs)
+{
+	os << rhs.GetSymbol();
+	return os;
+}
+
 
 
 

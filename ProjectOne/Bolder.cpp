@@ -14,6 +14,7 @@ int Bolder::setupBolder()
 	else if(direction = 0){
 		return direction += 2;
 	}
+	return direction == 4;
 }
 
 void Bolder::MoveBolder(int direction_choice) { //needs to be applied within a loop probs on game

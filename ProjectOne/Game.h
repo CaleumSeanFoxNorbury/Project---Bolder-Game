@@ -27,9 +27,11 @@ private:
 	Person person;
 	Bolder bolder;
 	GridBorder gridb_;
+
 	std::string GameEnded(char key);
 	bool game_ended(char key);
 	bool isArrowKeyCode(int Keycode);
+	//symbols(chars)
 	const char BOLDER = 'B';
 	const char FREECELL = '*';
 	const char GAMEBOARDBORDER = '0';

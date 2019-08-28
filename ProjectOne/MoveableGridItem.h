@@ -1,6 +1,7 @@
 #pragma once
 #include "GridItem.h"
 #include "RandomNumberaGenerator.h"
+#include<sstream>
 
 
 class MoveableGridItem : public GridItem
@@ -14,6 +15,7 @@ public:
 	void Set_XY(int, int);
 	void Update_Position(int, int);
 	void RandomPosition();
+	friend std::ostream& operator<<(std::ostream & os, MoveableGridItem & rhs);
 private:
 	RNG rng;
 	int x, y;

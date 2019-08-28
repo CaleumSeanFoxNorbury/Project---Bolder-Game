@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(Player * player) : player(player), person(PERSON), bolder(BOLDER), gridb_(GRIDBOARDERS) //NEEDS TO CHECK AS SHOULDNT LINK TO CONSTRUCTOR LINK
+Game::Game(Player * player) : player(player), person(PERSON), bolder(BOLDER), gridb_(GRIDBOARDER) //NEEDS TO CHECK AS SHOULDNT LINK TO CONSTRUCTOR LINK
 {
 }
 
@@ -8,9 +8,9 @@ void Game::run()
 {
 	UserInterface ui_G;
 	int Bolders_Direction = bolder.setupBolder();
-	
 	person.RandomPosition();
 	bolder.RandomPosition();
+	gridb_.Create_Boarders();
 	//TODO::MAKE SURE NOTHING OVERLAPS WITHIN THE GRID WHILE BEING POSITIONED RANDOMLY 
 	ui_G.DrawGrid(Prepare_Grid());
 	//TODO::PRING SCORES, NAME AND OTHER INFO FOR GAME(RUNNING INFO)
@@ -33,21 +33,22 @@ std::string Game::Prepare_Grid()
 	std::ostringstream os;
 	for (int row(1); row <= SIZE; ++row) {
 		for (int col(1); col <= SIZE; ++col) {
-			if ((row == person.Get_Y()) && (col == person.Get_X())) {
-				os << PERSON;
-				//os << person.GetSymbol();
-			}
-			else
-			{
-				if ((row == bolder.Get_X()) && (col == bolder.Get_Y())) {
-					os << BOLDER;
+			for (int i(0); i < gridb_.border.size(); i++) {
+				if ((row == gridb_.border[i].Get_X()) && (col == gridb_.border[i].Get_Y())) {		//OUTPUTS THE ADDRESS NOT THE SYMBOL one step closer
+					os << gridb_.border[i];
 				}
 				else {
-					if ((row == 0) && (col == 0)) {
-						os << GRIDBOARDER;
+					if ((row == person.Get_Y()) && (col == person.Get_X())) {
+						os << PERSON;
 					}
-					else {
-						os << FREECELL;
+					else
+					{
+						if ((row == bolder.Get_X()) && (col == bolder.Get_Y())) {
+							os << BOLDER;
+						}
+						else {
+							os << FREECELL;
+						}
 					}
 				}
 			}
@@ -75,11 +76,3 @@ bool Game::isArrowKeyCode(int Keycode)
 {
 	return (Keycode == LEFT) || (Keycode == RIGHT) || (Keycode == UP) || (Keycode == DOWN);
 }
-
-/*
-					if ((row == gridb_.Get_X()) && (col == gridb_.Get_Y())) {
-						for (int i(0); i < gridb_.border.size(); i++) {
-							os << GRIDBOARDER;
-						}
-					}
-*/
