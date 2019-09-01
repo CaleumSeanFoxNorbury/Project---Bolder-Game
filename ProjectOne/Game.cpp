@@ -16,6 +16,7 @@ void Game::run()
 	//TODO::PRING SCORES, NAME AND OTHER INFO FOR GAME(RUNNING INFO)
 	key = ui_G.GetKeypressFromUser();
 	while (!game_ended(key)) {
+		//not changing bolders direction 
 		bolder.MoveBolder(Bolders_Direction);
 		if (isArrowKeyCode(key)) {
 			person.scamper(key);
@@ -38,7 +39,7 @@ std::string Game::Prepare_Grid()
 					os << gridb_.border[i];
 				}
 				else {
-					if ((row == person.Get_Y()) && (col == person.Get_X())) {
+					if ((row == person.Get_Y()) && (col == person.Get_X())) {		
 						os << PERSON;
 					}
 					else
