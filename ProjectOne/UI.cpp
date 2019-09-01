@@ -2,6 +2,13 @@
 #include "UI.h"
 
 
+std::ostringstream UserInterface::GameData(std::string name)
+{
+	std::ostringstream os;
+	os << "Players Name: " << name << std::endl;
+	return os;
+}
+
 void UserInterface::DrawGrid(std::string grid_data)
 {
 	system("cls");

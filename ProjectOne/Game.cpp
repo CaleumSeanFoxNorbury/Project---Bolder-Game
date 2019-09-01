@@ -7,17 +7,19 @@ Game::Game(Player * player) : player(player), person(PERSON), bolder(BOLDER), gr
 void Game::run()
 {
 	UserInterface ui_G;
-	int Bolders_Direction = bolder.setupBolder();
+	bolder.direction_choice = bolder.setupBolder();
 	person.RandomPosition();
 	bolder.RandomPosition();
 	gridb_.Create_Boarders();
 	//TODO::MAKE SURE NOTHING OVERLAPS WITHIN THE GRID WHILE BEING POSITIONED RANDOMLY 
 	ui_G.DrawGrid(Prepare_Grid());
 	//TODO::PRING SCORES, NAME AND OTHER INFO FOR GAME(RUNNING INFO)
+	//ui_G.GameData(player->getName);
 	key = ui_G.GetKeypressFromUser();
 	while (!game_ended(key)) {
+		// ADD CHNAGE DIRECTION FUNCTION 
 		//not changing bolders direction 
-		bolder.MoveBolder(Bolders_Direction);
+		bolder.MoveBolder();
 		if (isArrowKeyCode(key)) {
 			person.scamper(key);
 			ui_G.DrawGrid(Prepare_Grid());
