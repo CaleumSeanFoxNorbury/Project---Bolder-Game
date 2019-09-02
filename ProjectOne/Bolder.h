@@ -7,8 +7,6 @@ public:
 	Bolder(const char);
 	void MoveBolder();
 	int setupBolder();
-	//void Bounce(int&, int&);
-	
 	int direction_choice = 0;
 private:
 	void set_direction(int& bx, int& by);

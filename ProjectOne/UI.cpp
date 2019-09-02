@@ -2,11 +2,10 @@
 #include "UI.h"
 
 
-std::ostringstream UserInterface::GameData(std::string name)
+void UserInterface::GameData(std::string name)
 {
-	std::ostringstream os;
-	os << "Players Name: " << name << std::endl;
-	return os;
+	std::cout << "PlayerName: " << name << std::endl;
+	//add scores
 }
 
 void UserInterface::DrawGrid(std::string grid_data)

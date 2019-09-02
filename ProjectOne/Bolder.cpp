@@ -8,13 +8,13 @@ int Bolder::setupBolder()
 {
 	int direction = rng.GetRandomValue(4);
 
-	if (direction >= 1 && direction <= 4) {
+	if (direction <= 4  && direction >= 1) {
 		return direction;
 	}
-	else if (direction = 0) {
-		return direction += 2;
+	else {
+		direction = rng.GetRandomValue(4);
+		return direction;
 	}
-	return direction = 4;
 }
 
 void Bolder::MoveBolder() { 

@@ -6,7 +6,7 @@
 
 class UserInterface {
 public:
-	std::ostringstream GameData(std::string);
+	void GameData(std::string);
 	void DrawGrid(std::string grid_data); //override
 	void Hold_Window();
 	int GetKeypressFromUser() const;

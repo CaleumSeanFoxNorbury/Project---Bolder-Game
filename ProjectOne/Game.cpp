@@ -14,16 +14,16 @@ void Game::run()
 	//TODO::MAKE SURE NOTHING OVERLAPS WITHIN THE GRID WHILE BEING POSITIONED RANDOMLY 
 	ui_G.DrawGrid(Prepare_Grid());
 	//TODO::PRING SCORES, NAME AND OTHER INFO FOR GAME(RUNNING INFO)
-	//ui_G.GameData(player->getName);
+	ui_G.GameData(player->getName());
 	key = ui_G.GetKeypressFromUser();
 	while (!game_ended(key)) {
-		// ADD CHNAGE DIRECTION FUNCTION 
+		//ADD CHNAGE DIRECTION FUNCTION 
 		//not changing bolders direction 
 		bolder.MoveBolder();
 		if (isArrowKeyCode(key)) {
 			person.scamper(key);
 			ui_G.DrawGrid(Prepare_Grid());
-			//apply scores and stuff again
+			ui_G.GameData(player->getName());
 			//apply rules fucntion goes here
 		}
 		key = ui_G.GetKeypressFromUser();
