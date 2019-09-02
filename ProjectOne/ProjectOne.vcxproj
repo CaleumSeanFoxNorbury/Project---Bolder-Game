@@ -120,6 +120,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GridBorder.cpp" />
     <ClCompile Include="GridItem.cpp" />
+    <ClCompile Include="Key.cpp" />
     <ClCompile Include="MoveableGridItem.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -133,6 +134,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GridBorder.h" />
     <ClInclude Include="GridItem.h" />
+    <ClInclude Include="Key.h" />
     <ClInclude Include="MoveableGridItem.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Player.h" />

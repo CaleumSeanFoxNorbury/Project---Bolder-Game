@@ -8,6 +8,12 @@ void UserInterface::GameData(std::string name)
 	//add scores
 }
 
+void UserInterface::EndGameMessages(int & score)
+{
+	std::cout << "GAME ENDED!" << std::endl;
+	std::cout << "Score: " << score << std::endl;
+}
+
 void UserInterface::DrawGrid(std::string grid_data)
 {
 	system("cls");

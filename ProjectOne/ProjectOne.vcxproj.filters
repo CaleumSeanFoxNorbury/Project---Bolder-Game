@@ -54,6 +54,9 @@
     <ClCompile Include="GridBorder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Key.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="GridBorder.h">
       <Filter>Header Files\Grid Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

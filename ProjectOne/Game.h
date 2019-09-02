@@ -4,6 +4,7 @@
 #include"Person.h"
 #include"Bolder.h"
 #include"GridBorder.h"
+#include"Key.h"
 
 #include<assert.h>
 #include<string>
@@ -27,16 +28,18 @@ private:
 	Person person;
 	Bolder bolder;
 	GridBorder gridb_;
+	Key gridkey;
 
-	std::string GameEnded(char key);
 	bool game_ended(char key);
 	bool isArrowKeyCode(int Keycode);
+	void GameOneRules();
 	//symbols(chars)
 	const char BOLDER = 'B';
 	const char FREECELL = '*';
 	const char GAMEBOARDBORDER = '0';
 	const char PERSON = 'P';
 	const char GRIDBOARDER = 'O';
+	const char GRIDKEY = 'K';
 	const int SIZE = 20;
 	int key;
 };

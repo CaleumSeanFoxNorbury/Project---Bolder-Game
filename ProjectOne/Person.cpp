@@ -33,4 +33,14 @@ void Person::scamper(char k)
 	}
 }
 
+bool Person::IsStillAlive() const
+{
+	return alive;
+}
+
+void Person::Die()
+{
+	alive = false;
+}
+
 //cant include header files two way system game.h cant include person.h if person.h already includes game.h
