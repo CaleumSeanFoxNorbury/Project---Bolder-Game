@@ -8,10 +8,12 @@ public:
 	void MoveBolder();
 	int setupBolder();
 	int direction_choice = 0;
+	void GatherKey(int&, int&);
 private:
-	void set_direction(int& bx, int& by);
-	void Bounce(int & bx, int & by);
 	RNG rng;
+	void set_direction(int& bx, int& by);
+	void SetDirectionToKey(int&, int&);
+	void Bounce();
 	int bolder_x;
 	int bolder_y;
 };

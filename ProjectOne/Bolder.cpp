@@ -17,6 +17,17 @@ int Bolder::setupBolder()
 	}
 }
 
+void Bolder::GatherKey(int & kx, int & ky)
+{
+	int Keyx = 0, Keyy = 0;
+	SetDirectionToKey(kx, ky);
+	set_direction(Keyx, Keyy);
+	if (((Get_X() + Keyx) >= 1) && ((Get_X() + Keyx) <= 20) &&
+		((Get_Y() + Keyy) >= 1) && ((Get_Y() + Keyy) <= 20)) {
+		Update_Position(Keyx, Keyy);
+	}
+}
+
 void Bolder::MoveBolder() { 
 	int bolderx, boldery;
 	set_direction(bolderx, boldery);
@@ -25,8 +36,8 @@ void Bolder::MoveBolder() {
 		Update_Position(bolderx, boldery);
 	}
 	else {
-		int newx, newy;
-		Bounce(newx, newy);
+		int newx = 0 , newy = 0;
+		Bounce();
 		if (((Get_X() + newx) >= 1) && ((Get_X() + newx) <= 20) &&
 			((Get_Y() + newy) >= 1) && ((Get_Y() + newy) <= 20)) {
 			Update_Position(newx, newy);
@@ -58,9 +69,62 @@ void Bolder::set_direction(int & bx, int & by)
 		bx -= 1;
 		by -= 1;
 	}
+	if (direction_choice == 5) {
+		//Going left
+		by -= 1;
+	}
+	if (direction_choice == 6) {
+		by += 1;
+	}
+
+	if (direction_choice == 7) {
+		//Going up
+		bx -= 1;
+	}
+	if (direction_choice == 8) {
+		//going down
+		bx += 1;
+	}
 }
 
-void Bolder::Bounce(int& bx, int& by)
+void Bolder::SetDirectionToKey(int& kx, int& ky)
+{
+	assert(kx >= 1 && kx <= 20 && kx >= 1 && kx <= 20);
+	if (Get_X() < ky && Get_Y() < kx) {
+		//down right
+		direction_choice = 2;
+	}
+	if (Get_X() < ky && Get_Y() > kx) {
+		//up right
+		direction_choice = 5;
+	}
+	if (Get_X() < ky && Get_Y() == kx) {
+		//right
+		direction_choice = 5;
+	}
+	if (Get_X() > ky && Get_Y() < kx) {
+		//down and left
+		direction_choice = 3;
+	}
+	if (Get_X() > ky && Get_Y() > kx) {
+		//up and left
+		direction_choice = 4;
+	}
+	if (Get_X() > ky && Get_Y() == kx) {
+		//left
+		direction_choice = 6;
+	}
+	if (Get_X() == ky && Get_Y() > kx) {
+		//down
+		direction_choice = 8;
+	}
+	if (Get_X() == ky && Get_Y() < kx) {
+		//up
+		direction_choice = 7;
+	}
+}
+
+void Bolder::Bounce()
 {
 	bool Up_right = false;
 	bool Up_left = false;
@@ -85,7 +149,6 @@ void Bolder::Bounce(int& bx, int& by)
 		break;
 		}
 	}
-
 	//GET Y && Y ARE BOTH == TO X's (CODE PROBLEM)
 	if (Up_right) { 
 		if (Get_X() <= 1) {			//this is actuall y 		
@@ -120,3 +183,4 @@ void Bolder::Bounce(int& bx, int& by)
 		}
 	}
 }
+

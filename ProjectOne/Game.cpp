@@ -19,8 +19,19 @@ void Game::run()
 	ui_G.GameData(player->getName());
 	GameOneRules();
 	key = ui_G.GetKeypressFromUser();
-	while (!game_ended(key)) {
-		bolder.MoveBolder();
+	while (!game_ended(key)) {	
+		if (!gridkey.BolderCollected()) {
+			int gridKeyx = 0; int gridKeyy = 0;
+			gridKeyx = gridkey.Get_X();
+			gridKeyy = gridkey.Get_Y();
+			bolder.GatherKey(gridKeyx, gridKeyy);
+		}
+		if(gridkey.BolderGotKey()){
+			bolder.MoveBolder();	
+			gridkey.SpotBolder(&bolder);
+			gridkey.Follow_Bolder();			
+		}
+		//	APPLY BOLDER COLLECTED KEY FUNCTION THAT FOLLOWS BOLDER
 		//if (eachcircle == 10) {
 			//move direction 
 			//also allow bolders special moves after so long on the game
@@ -56,7 +67,7 @@ std::string Game::Prepare_Grid()
 							os << BOLDER;
 						}
 						else {
-							if ((row == gridkey.Get_Y()) && (col == gridkey.Get_X()) && (!gridkey.keyHasBeenCollected())) {
+							if ((row == gridkey.Get_Y()) && (col == gridkey.Get_X()) && (!gridkey.PersonCollected())) {
 								os << GRIDKEY;
 							}
 							else {
@@ -88,7 +99,9 @@ void Game::GameOneRules()
 		person.Die();
 	}
 	if ((person.Get_X() == gridkey.Get_X()) && (person.Get_Y() == gridkey.Get_Y())) {
-		gridkey.keyHasBeenCollected();
-		//open gate and allow the person to escape
+		gridkey.Person_NutDisappear();
+	}
+	if ((bolder.Get_Y() == gridkey.Get_X()) && (bolder.Get_X() == gridkey.Get_Y())) {
+		gridkey.KeyFollowBolder();
 	}
 }
