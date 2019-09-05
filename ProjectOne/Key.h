@@ -11,7 +11,7 @@ public:
 	bool PersonCollected() const;
 	bool BolderCollected() const;
 	void Person_NutDisappear();
-	void setDirection(int& bx, int& by);
+	void setDirection();
 	void KeyFollowBolder();
 	bool BolderGotKey();
 	Bolder * bolder_key_;

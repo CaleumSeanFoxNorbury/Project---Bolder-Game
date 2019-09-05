@@ -12,9 +12,21 @@ void Key::SpotBolder(Bolder * bolder_key)
 
 void Key::Follow_Bolder()
 {
-	int keyX, keyY;
-	setDirection(keyX, keyY);
-	Update_Position(keyX, keyY);
+	int keyX = 0, keyY = 0;
+	setDirection();
+
+	if ((bolder_key_->Get_X() - 1) < 1){
+		Set_XY(bolder_key_->Get_Y(), bolder_key_->Get_X() + 1);
+	}
+	else {
+		Update_Position(keyX, keyY);
+	}
+	if ((bolder_key_->Get_X() + 1) > 20){
+		Set_XY(bolder_key_->Get_Y(), bolder_key_->Get_X() - 1);
+	}
+	else {
+		Update_Position(keyX, keyY);
+	}
 }
 
 bool Key::PersonCollected() const
@@ -41,25 +53,9 @@ void Key::Person_NutDisappear()
 	Personcollected = true;
 }
 
-void Key::setDirection(int & bx, int & by)
+void Key::setDirection()
 {
-	//IF THIS DOESNT WORK TRY SET GET AND Y TO BOLDER Y - 1
-	assert(bolder_key_ != nullptr);
-	
-	bx = 0; by = 0;
-	if (Get_X() < bolder_key_->Get_X()) {
-		bx = 1;
-	}else
-		if (Get_X() > bolder_key_->Get_X()) {
-			bx = -1;
-		}
-		else
-			if (Get_Y() < bolder_key_->Get_Y()) {
-				by = 1;
-			}
-			else
-				if (Get_Y() > bolder_key_->Get_Y()) {
-					by = -1;
-				}
+	assert(bolder_key_ != nullptr);	
+	Set_XY(bolder_key_->Get_Y(), bolder_key_->Get_X() - 1);
 }
 
