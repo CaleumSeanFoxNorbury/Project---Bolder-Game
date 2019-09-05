@@ -45,6 +45,11 @@ void Bolder::MoveBolder() {
 	}
 }
 
+void Bolder::BounceOffObjects()
+{
+	Bounce();
+}
+
 void Bolder::set_direction(int & bx, int & by)
 {
 	assert(direction_choice >= 1 && direction_choice <= 8);
@@ -74,6 +79,7 @@ void Bolder::set_direction(int & bx, int & by)
 		by -= 1;
 	}
 	if (direction_choice == 6) {
+		//going right
 		by += 1;
 	}
 

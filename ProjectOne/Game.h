@@ -5,6 +5,7 @@
 #include"Bolder.h"
 #include"GridBorder.h"
 #include"Key.h"
+#include"Gate.h"
 
 #include<assert.h>
 #include<string>
@@ -29,6 +30,7 @@ private:
 	Bolder bolder;
 	GridBorder gridb_;
 	Key gridkey;
+	Gate gate;
 
 	bool game_ended(char key);
 	bool isArrowKeyCode(int Keycode);
@@ -40,6 +42,7 @@ private:
 	const char PERSON = 'P';
 	const char GRIDBOARDER = 'O';
 	const char GRIDKEY = 'K';
+	const char GATE = 'G';
 	const int SIZE = 20;
 	int key;
 };

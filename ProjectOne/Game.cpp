@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(Player * player) : player(player), person(PERSON), bolder(BOLDER), gridb_(GRIDBOARDER), gridkey(GRIDKEY)//NEEDS TO CHECK AS SHOULDNT LINK TO CONSTRUCTOR LINK
+Game::Game(Player * player) : player(player), person(PERSON), bolder(BOLDER), gridb_(GRIDBOARDER), gridkey(GRIDKEY), gate(GATE)//NEEDS TO CHECK AS SHOULDNT LINK TO CONSTRUCTOR LINK
 {
 }
 
@@ -13,6 +13,7 @@ void Game::run()
 	person.RandomPosition();
 	bolder.RandomPosition();
 	gridkey.RandomPosition();
+	gate.RandomPosition();
 	gridb_.Create_Boarders();
 	//TODO::MAKE SURE NOTHING OVERLAPS WITHIN THE GRID WHILE BEING POSITIONED RANDOMLY 
 	ui_G.DrawGrid(Prepare_Grid());
@@ -71,7 +72,12 @@ std::string Game::Prepare_Grid()
 								os << GRIDKEY;
 							}
 							else {
-								os << FREECELL;
+								if((row == gate.Get_X()) && (col == gate.Get_Y())) {
+									os << GATE;
+								}
+								else {
+									os << FREECELL;
+								}
 							}
 						}
 					}
@@ -100,8 +106,12 @@ void Game::GameOneRules()
 	}
 	if ((person.Get_X() == gridkey.Get_X()) && (person.Get_Y() == gridkey.Get_Y())) {
 		gridkey.Person_NutDisappear();
+		person.OpenGate();
 	}
 	if ((bolder.Get_Y() == gridkey.Get_X()) && (bolder.Get_X() == gridkey.Get_Y())) {
 		gridkey.KeyFollowBolder();
+	}
+	if ((bolder.Get_Y() == gate.Get_X()) && (bolder.Get_X() == gate.Get_Y())) /*bolder x is bolder y*/ {
+		bolder.BounceOffObjects();
 	}
 }

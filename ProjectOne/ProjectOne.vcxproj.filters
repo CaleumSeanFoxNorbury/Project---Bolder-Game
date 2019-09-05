@@ -55,7 +55,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Key.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Grid Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Gate.cpp">
+      <Filter>Source Files\Grid Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +93,10 @@
       <Filter>Header Files\Grid Objects</Filter>
     </ClInclude>
     <ClInclude Include="Key.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Grid Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Gate.h">
+      <Filter>Header Files\Grid Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

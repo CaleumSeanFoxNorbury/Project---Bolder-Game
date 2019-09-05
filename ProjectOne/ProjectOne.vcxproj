@@ -118,6 +118,7 @@
     <ClCompile Include="Bolder.cpp" />
     <ClCompile Include="EscapeGame.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Gate.cpp" />
     <ClCompile Include="GridBorder.cpp" />
     <ClCompile Include="GridItem.cpp" />
     <ClCompile Include="Key.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="Bolder.h" />
     <ClInclude Include="EscapeGame.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gate.h" />
     <ClInclude Include="GridBorder.h" />
     <ClInclude Include="GridItem.h" />
     <ClInclude Include="Key.h" />

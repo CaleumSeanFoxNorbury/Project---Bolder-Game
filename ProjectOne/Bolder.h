@@ -6,6 +6,7 @@ class Bolder : public MoveableGridItem {
 public:
 	Bolder(const char);
 	void MoveBolder();
+	void BounceOffObjects();
 	int setupBolder();
 	int direction_choice = 0;
 	void GatherKey(int&, int&);

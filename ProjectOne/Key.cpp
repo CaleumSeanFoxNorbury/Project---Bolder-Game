@@ -21,12 +21,6 @@ void Key::Follow_Bolder()
 	else {
 		Update_Position(keyX, keyY);
 	}
-	if ((bolder_key_->Get_X() + 1) > 20){
-		Set_XY(bolder_key_->Get_Y(), bolder_key_->Get_X() - 1);
-	}
-	else {
-		Update_Position(keyX, keyY);
-	}
 }
 
 bool Key::PersonCollected() const
