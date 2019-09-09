@@ -136,7 +136,10 @@ void Bolder::Bounce()
 	bool Up_left = false;
 	bool Down_right = false;
 	bool Down_left = false;
+	bool Right = false;
+	bool Left = false;
 
+	
 	switch (direction_choice) {
 	case 1: {
 		Down_left = true;
@@ -154,6 +157,12 @@ void Bolder::Bounce()
 		Up_left = true;
 		break;
 		}
+	case 5: {
+		Left = true;
+	}
+	case 6: {
+		Right = true;
+	}
 	}
 	//GET Y && Y ARE BOTH == TO X's (CODE PROBLEM)
 	if (Up_right) { 
@@ -187,6 +196,19 @@ void Bolder::Bounce()
 		if (Get_Y() <= 1) {
 			direction_choice = 2;
 		}
+	}
+	if (Left) {
+		if (Get_X() <= 10)
+			direction_choice = 2;
+		if(Get_X() >= 10)
+		direction_choice = 3;
+
+	}
+	if (Right) {
+		if (Get_X() <= 10)
+			direction_choice = 2;
+		if (Get_X() >= 10)
+			direction_choice = 3;
 	}
 }
 

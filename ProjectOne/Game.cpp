@@ -7,7 +7,8 @@ Game::Game(Player * player) : player(player), person(PERSON), bolder(BOLDER), gr
 void Game::run()
 {
 	int eachcircle = 0;
-	int score = 0;
+	int score = 0; // add this to player
+	int GameResults = 0;
 	UserInterface ui_G;
 	bolder.direction_choice = bolder.setupBolder();
 	person.RandomPosition();
@@ -20,18 +21,28 @@ void Game::run()
 	ui_G.GameData(player->getName());
 	GameOneRules();
 	key = ui_G.GetKeypressFromUser();
-	while (!game_ended(key)) {	
-		if (!gridkey.BolderCollected()) {
-			int gridKeyx = 0; int gridKeyy = 0;
-			gridKeyx = gridkey.Get_X();
-			gridKeyy = gridkey.Get_Y();
-			bolder.GatherKey(gridKeyx, gridKeyy);
-		}
-		if(gridkey.BolderGotKey()){
-			bolder.MoveBolder();	
-			gridkey.SpotBolder(&bolder);
-			gridkey.Follow_Bolder();			
-		}
+	while (!game_ended(key)) {		
+	if ((!gridkey.BolderCollected()) && (!person.GateOpen())) {
+		int gridKeyx = 0; int gridKeyy = 0;
+		gridKeyx = gridkey.Get_X();
+		gridKeyy = gridkey.Get_Y();
+		bolder.GatherKey(gridKeyx, gridKeyy);
+	}
+	if ((gridkey.BolderGotKey()) && (!person.GateOpen())) {
+		bolder.MoveBolder();
+		gridkey.SpotBolder(&bolder);
+		gridkey.Follow_Bolder();
+	}
+	if ((person.GateOpen()) && (!gridkey.BolderGotKey())) {
+		bolder.MoveBolder();
+		gridkey.SpotBolder(&bolder);
+		gridkey.Follow_Bolder();
+	}
+	if ((gridkey.BolderGotKey()) && (person.GateOpen())) {
+		bolder.MoveBolder();
+		gridkey.SpotBolder(&bolder);
+		gridkey.Follow_Bolder();
+	}
 		//	APPLY BOLDER COLLECTED KEY FUNCTION THAT FOLLOWS BOLDER
 		//if (eachcircle == 10) {
 			//move direction 
@@ -46,7 +57,11 @@ void Game::run()
 		}
 		key = ui_G.GetKeypressFromUser();
 	}
-	ui_G.EndGameMessages(score);
+	if (person_escaped()) {
+		score++;
+		ui_G.EndGameMessages(GameResults = 2, score);
+	}else
+	ui_G.EndGameMessages(GameResults = 1, score);
 }
 
 std::string Game::Prepare_Grid() 
@@ -55,7 +70,7 @@ std::string Game::Prepare_Grid()
 	for (int row(1); row <= SIZE; ++row) {
 		for (int col(1); col <= SIZE; ++col) {
 			for (int i(0); i < gridb_.border.size(); i++) {
-				if ((row == gridb_.border[i].Get_X()) && (col == gridb_.border[i].Get_Y())) {		//OUTPUTS THE ADDRESS NOT THE SYMBOL one step closer
+				if ((row == gridb_.border[i].Get_X()) && (col == gridb_.border[i].Get_Y())) {
 					os << gridb_.border[i];
 				}
 				else {
@@ -72,7 +87,7 @@ std::string Game::Prepare_Grid()
 								os << GRIDKEY;
 							}
 							else {
-								if((row == gate.Get_X()) && (col == gate.Get_Y())) {
+								if((row == gate.Get_X()) && (col == gate.Get_Y()) && (gridkey.PersonCollected())) {
 									os << GATE;
 								}
 								else {
@@ -89,9 +104,19 @@ std::string Game::Prepare_Grid()
 	return os.str();
 }
 
+bool Game::person_escaped() const
+{
+	return escaped;
+}
+
+void Game::PlayerEscaped()
+{
+	escaped = true;
+}
+
 bool Game::game_ended(char key)
 {
-	return (key == 'Q') || (!person.IsStillAlive()); //add more stuff to end the game
+	return (key == 'Q') || (!person.IsStillAlive()) || (person_escaped()); //add more stuff to end the game
 }
 
 bool Game::isArrowKeyCode(int Keycode)
@@ -110,8 +135,12 @@ void Game::GameOneRules()
 	}
 	if ((bolder.Get_Y() == gridkey.Get_X()) && (bolder.Get_X() == gridkey.Get_Y())) {
 		gridkey.KeyFollowBolder();
+		
 	}
 	if ((bolder.Get_Y() == gate.Get_X()) && (bolder.Get_X() == gate.Get_Y())) /*bolder x is bolder y*/ {
 		bolder.BounceOffObjects();
+	}
+	if ((person.Get_Y() == gate.Get_X()) && (person.Get_X() == gate.Get_Y())) {
+		PlayerEscaped();
 	}
 }

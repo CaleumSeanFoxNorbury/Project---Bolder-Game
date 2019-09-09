@@ -32,9 +32,14 @@ private:
 	Key gridkey;
 	Gate gate;
 
+	void PlayerEscaped();
+	bool person_escaped() const;
 	bool game_ended(char key);
 	bool isArrowKeyCode(int Keycode);
 	void GameOneRules();
+
+	//data
+	bool escaped = false;
 	//symbols(chars)
 	const char BOLDER = 'B';
 	const char FREECELL = '*';

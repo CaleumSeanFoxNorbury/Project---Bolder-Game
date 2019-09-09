@@ -8,10 +8,24 @@ void UserInterface::GameData(std::string name)
 	//add scores
 }
 
-void UserInterface::EndGameMessages(int & score)
-{
-	std::cout << "GAME ENDED!" << std::endl;
-	std::cout << "Score: " << score << std::endl;
+void UserInterface::EndGameMessages(int& GameResults, int & score)
+{	
+	switch (GameResults) {
+	case 1: {
+		//loose
+		std::cout << "YOU LOST || PERSON HAS BEEN HIT BY THE BOLDER!" << std::endl;
+		std::cout << "GAME ENDED!" << std::endl;
+		std::cout << "Score: " << score << std::endl;
+		break;
+	}
+	case 2: {
+		//win
+		std::cout << "YOU WON || PERSON ESCAPED!" << std::endl;
+		std::cout << "GAME ENDED!" << std::endl;
+		std::cout << "Score: " << score << std::endl;
+		break;
+	}
+	}
 }
 
 void UserInterface::DrawGrid(std::string grid_data)
