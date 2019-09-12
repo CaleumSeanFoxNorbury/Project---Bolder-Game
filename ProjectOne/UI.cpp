@@ -5,12 +5,13 @@
 void UserInterface::GameData(std::string name)
 {
 	std::cout << "PlayerName: " << name << std::endl;
-	//add scores
+	//std::cout << "Score: " << score << std::endl;
 }
 
-void UserInterface::EndGameMessages(int& GameResults, int & score)
+void UserInterface::EndGameMessages(int& GameResults, int& score)
 {	
 	switch (GameResults) {
+		//needs editing 
 	case 1: {
 		//loose
 		std::cout << "YOU LOST || PERSON HAS BEEN HIT BY THE BOLDER!" << std::endl;

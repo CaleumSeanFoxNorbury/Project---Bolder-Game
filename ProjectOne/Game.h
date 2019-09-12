@@ -22,9 +22,14 @@
 class Game {
 public:
 	Game(Player* player);
-	void run();
-	std::string Prepare_Grid();
+	void SetUpGame();
+
+	virtual void GridItemPositioning();
+	virtual std::string Prepare_Grid();											
 private:
+	virtual void GameConditions();
+	virtual void GameRules();  //can make vertual and reuse but chnage form, rename to fit function name properly 
+	virtual void EndGame();
 	Player * player;
 	Person person;
 	Bolder bolder;
@@ -36,7 +41,6 @@ private:
 	bool person_escaped() const;
 	bool game_ended(char key);
 	bool isArrowKeyCode(int Keycode);
-	void GameOneRules();
 
 	//data
 	bool escaped = false;
@@ -50,4 +54,5 @@ private:
 	const char GATE = 'G';
 	const int SIZE = 20;
 	int key;
+	int GameResults = 0;
 };

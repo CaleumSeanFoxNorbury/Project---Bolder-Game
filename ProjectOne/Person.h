@@ -12,9 +12,9 @@
 class Person : public MoveableGridItem {
 public:
 	Person(char const);
-	void scamper(char k);
+	void scamper(char k); //will be inherited in stage two
 	bool IsStillAlive() const;
-	bool GateOpen() const;
+	bool GateOpen() const; //can be virutal for stage two (game two)
 	void Die();
 	void OpenGate();
 private:

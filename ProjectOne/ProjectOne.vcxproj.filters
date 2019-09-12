@@ -19,12 +19,15 @@
     <Filter Include="Source Files\Grid Objects">
       <UniqueIdentifier>{eef235cb-d3b0-4cd1-8bd7-355fef7e1c1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Games">
+      <UniqueIdentifier>{0b440c9b-4547-488a-8235-1766109eec95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Games">
+      <UniqueIdentifier>{6c174822-7a5b-42c7-8869-67e0212f8519}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI.cpp">
@@ -51,20 +54,23 @@
     <ClCompile Include="Bolder.cpp">
       <Filter>Source Files\Grid Objects</Filter>
     </ClCompile>
-    <ClCompile Include="GridBorder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Key.cpp">
       <Filter>Source Files\Grid Objects</Filter>
     </ClCompile>
     <ClCompile Include="Gate.cpp">
       <Filter>Source Files\Grid Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Games</Filter>
+    </ClCompile>
+    <ClCompile Include="GridBorder.cpp">
+      <Filter>Source Files\Grid Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="StartGame.cpp">
+      <Filter>Source Files\Games</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -97,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="Gate.h">
       <Filter>Header Files\Grid Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Games</Filter>
+    </ClInclude>
+    <ClInclude Include="StartGame.h">
+      <Filter>Header Files\Games</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

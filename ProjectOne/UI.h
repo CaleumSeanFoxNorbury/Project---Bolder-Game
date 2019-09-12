@@ -4,6 +4,7 @@
 #include"Game.h"
 
 
+
 class UserInterface {
 public:
 	void GameData(std::string);
@@ -11,4 +12,6 @@ public:
 	void DrawGrid(std::string grid_data); //override
 	void Hold_Window();
 	int GetKeypressFromUser() const;
+private: 
+
 };

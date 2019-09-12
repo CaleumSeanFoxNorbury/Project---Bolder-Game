@@ -4,64 +4,28 @@ Game::Game(Player * player) : player(player), person(PERSON), bolder(BOLDER), gr
 {
 }
 
-void Game::run()
+void Game::SetUpGame()
 {
-	int eachcircle = 0;
-	int score = 0; // add this to player
-	int GameResults = 0;
 	UserInterface ui_G;
-	bolder.direction_choice = bolder.setupBolder();
+	GridItemPositioning();
+	ui_G.DrawGrid(Prepare_Grid());
+	ui_G.GameData(player->getName());
+	GameRules();
+	key = ui_G.GetKeypressFromUser();
+	while (!game_ended(key)) {
+		GameConditions();		
+		key = ui_G.GetKeypressFromUser();
+	}
+	EndGame();
+}
+
+void Game::GridItemPositioning()
+{
 	person.RandomPosition();
 	bolder.RandomPosition();
 	gridkey.RandomPosition();
 	gate.RandomPosition();
 	gridb_.Create_Boarders();
-	//TODO::MAKE SURE NOTHING OVERLAPS WITHIN THE GRID WHILE BEING POSITIONED RANDOMLY 
-	ui_G.DrawGrid(Prepare_Grid());
-	ui_G.GameData(player->getName());
-	GameOneRules();
-	key = ui_G.GetKeypressFromUser();
-	while (!game_ended(key)) {		
-	if ((!gridkey.BolderCollected()) && (!person.GateOpen())) {
-		int gridKeyx = 0; int gridKeyy = 0;
-		gridKeyx = gridkey.Get_X();
-		gridKeyy = gridkey.Get_Y();
-		bolder.GatherKey(gridKeyx, gridKeyy);
-	}
-	if ((gridkey.BolderGotKey()) && (!person.GateOpen())) {
-		bolder.MoveBolder();
-		gridkey.SpotBolder(&bolder);
-		gridkey.Follow_Bolder();
-	}
-	if ((person.GateOpen()) && (!gridkey.BolderGotKey())) {
-		bolder.MoveBolder();
-		gridkey.SpotBolder(&bolder);
-		gridkey.Follow_Bolder();
-	}
-	if ((gridkey.BolderGotKey()) && (person.GateOpen())) {
-		bolder.MoveBolder();
-		gridkey.SpotBolder(&bolder);
-		gridkey.Follow_Bolder();
-	}
-		//	APPLY BOLDER COLLECTED KEY FUNCTION THAT FOLLOWS BOLDER
-		//if (eachcircle == 10) {
-			//move direction 
-			//also allow bolders special moves after so long on the game
-		//}
-		if (isArrowKeyCode(key)) {
-			person.scamper(key);
-			ui_G.DrawGrid(Prepare_Grid());
-			ui_G.GameData(player->getName());
-			GameOneRules();
-			eachcircle++;
-		}
-		key = ui_G.GetKeypressFromUser();
-	}
-	if (person_escaped()) {
-		score++;
-		ui_G.EndGameMessages(GameResults = 2, score);
-	}else
-	ui_G.EndGameMessages(GameResults = 1, score);
 }
 
 std::string Game::Prepare_Grid() 
@@ -124,7 +88,45 @@ bool Game::isArrowKeyCode(int Keycode)
 	return (Keycode == LEFT) || (Keycode == RIGHT) || (Keycode == UP) || (Keycode == DOWN);
 }
 
-void Game::GameOneRules()
+void Game::GameConditions()
+{
+	UserInterface ui_G;
+	if ((!gridkey.BolderCollected()) && (!person.GateOpen())) {
+		int gridKeyx = 0; int gridKeyy = 0;
+		gridKeyx = gridkey.Get_X();
+		gridKeyy = gridkey.Get_Y();
+		bolder.GatherKey(gridKeyx, gridKeyy);
+	}
+	if ((gridkey.BolderGotKey()) && (!person.GateOpen())) {
+		bolder.MoveBolder();
+		gridkey.SpotBolder(&bolder);
+		gridkey.Follow_Bolder();
+	}
+	if ((person.GateOpen()) && (!gridkey.BolderGotKey())) {
+		bolder.MoveBolder();
+		gridkey.SpotBolder(&bolder);
+		gridkey.Follow_Bolder();
+	}
+	if ((gridkey.BolderGotKey()) && (person.GateOpen())) {
+		bolder.MoveBolder();
+		gridkey.SpotBolder(&bolder);
+		gridkey.Follow_Bolder();
+	}
+	//	APPLY BOLDER COLLECTED KEY FUNCTION THAT FOLLOWS BOLDER
+	//if (eachcircle == 10) {
+		//move direction 
+		//also allow bolders special moves after so long on the game
+	//}
+	if (isArrowKeyCode(key)) {
+		person.scamper(key);
+		ui_G.DrawGrid(Prepare_Grid());
+		ui_G.GameData(player->getName());
+		GameRules();
+		//eachcircle++;
+	}
+}
+
+void Game::GameRules()
 {
 	if ((bolder.Get_Y() == person.Get_X()) && (bolder.Get_X() == person.Get_Y())) /*bolder x is bolder y*/ {
 		person.Die();
@@ -140,7 +142,26 @@ void Game::GameOneRules()
 	if ((bolder.Get_Y() == gate.Get_X()) && (bolder.Get_X() == gate.Get_Y())) /*bolder x is bolder y*/ {
 		bolder.BounceOffObjects();
 	}
-	if ((person.Get_Y() == gate.Get_X()) && (person.Get_X() == gate.Get_Y())) {
+	if ((person.Get_Y() == gate.Get_X()) && (person.Get_X() == gate.Get_Y()) && (person.GateOpen())) {
 		PlayerEscaped();
+	}
+}
+
+void Game::EndGame()
+{
+	UserInterface ui_G;
+	if (person_escaped()) { 
+		
+		GameResults = 2;
+		player->UpdateScore(GameResults);
+		int EndgameData = player->GetScore();
+		ui_G.EndGameMessages(GameResults, EndgameData);
+		//run anpther fuction within another class to passover to gamestore two
+	}
+	else {
+		GameResults = 1;
+		player->UpdateScore(GameResults);
+		int EndgameData = player->GetScore();
+		ui_G.EndGameMessages(GameResults, EndgameData);
 	}
 }
