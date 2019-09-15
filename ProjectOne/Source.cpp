@@ -2,27 +2,48 @@
 #include<string>
 
 #include"UI.h"
-#include"Game.h"
 #include"Player.h"
+#include"StartGame.h"
+#include"Application.h"
 
 int main() {
 	UserInterface ui;
-	std::string Name;											//{
-	int Score = 0;
-	std::cout << "Please Enter Your NickName: " << std::endl;	//	create this as a message functions within an output .h and .cpp
-	std::cin >> Name;											//}
+	Application app;
+	std::string playerusername;
+	std::string password;
+	int score = 0;
 
+	std::string name = "caleum", pw = "merlin01";
+	Player * caleum = new Player(name, score, name, pw);
+	app.AddNewUser(caleum);
+
+	ui.GettingUser(playerusername);
+	for (int i(0); i < app.GetPlayers().length(); i++) {	//turn all this into a function 
+		if (playerusername == app.GetPlayer(i)->GetUsername()) {
+			app.LogIn(app.GetPlayer(i));
+		}
+		else if (!app.IsUserLoggedIn()) {
+			ui.CreatePlayer(name, name, password);
+			Player* newplayer = new Player(name, score, name, password);
+			app.AddNewUser(newplayer);
+		}
+	}
+
+	
 	char carry_on;
 	do {
-		Player player(Name, Score);
-		Game game(&player);
-		game.SetUpGame();
+		if (app.IsUserLoggedIn()) {
+			//app.Load(app);
+		}
+		StartGame("LEVELONE", &app);
+		
+		//app.Save(app); // this is causing trouble not working properly 
 
 		std::cout << "Play again? (Y/N): ";
 		std::cin >> carry_on;
 	} while (tolower(carry_on) == 'y');
 	ui.Hold_Window();
-	
+
 	return(0);
 }
 

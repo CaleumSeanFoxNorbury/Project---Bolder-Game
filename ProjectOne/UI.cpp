@@ -1,11 +1,21 @@
-#include<iostream>
 #include "UI.h"
 
 
-void UserInterface::GameData(std::string name)
+void UserInterface::GettingUser(std::string & username)
 {
-	std::cout << "PlayerName: " << name << std::endl;
-	//std::cout << "Score: " << score << std::endl;
+	std::cout << "********************************" << std::endl;
+	std::cout << "* Please enetr your Username:  *" << std::endl;
+	std::cout << "********************************" << std::endl;
+	std::cin >> username;
+}
+
+void UserInterface::GameData(std::string name, int score)
+{
+	std::cout << std::endl;
+	std::cout << "******************************" << std::endl;
+	std::cout << "* PlayerName: " << name << std::endl;
+	std::cout << "* Score: " << score << std::endl;
+	std::cout << "******************************" << std::endl;
 }
 
 void UserInterface::EndGameMessages(int& GameResults, int& score)
@@ -48,4 +58,19 @@ int UserInterface::GetKeypressFromUser() const
 		keyPress = _getch();
 	}
 	return(toupper(keyPress));
+}
+
+void UserInterface::OutputLevel(std::string& leveltitle) const
+{
+	std::cout << "*      " << leveltitle << "      *" << std::endl;
+}
+
+void UserInterface::CreatePlayer(std::string & name, std::string & username, std::string & password)
+{
+	std::cout << "******************************" << std::endl;
+	std::cout << "* Please enter your username: " << std::endl;
+	std::cin >> name;
+	std::cout << "* Please enter a password: " << std::endl;
+	std::cin >> password;
+	std::cout << "******************************" << std::endl;
 }

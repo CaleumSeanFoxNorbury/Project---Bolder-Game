@@ -1,11 +1,7 @@
 #pragma once
-#include "UI.h"
+#include"Application.h"
+#include"UI.h"
 #include"Player.h"
-#include"Person.h"
-#include"Bolder.h"
-#include"GridBorder.h"
-#include"Key.h"
-#include"Gate.h"
 
 #include<assert.h>
 #include<string>
@@ -21,38 +17,20 @@
 
 class Game {
 public:
-	Game(Player* player);
+	Game(const std::string&, Application*);
+
 	void SetUpGame();
+	virtual void GridItemPositioning() = 0;
+	virtual std::string Prepare_Grid() = 0;											
+	virtual void GameRules() = 0;  //can make vertual and reuse but chnage form, rename to fit function name properly 
+	virtual void GameConditions() = 0;
+	virtual void EndGame() = 0;
 
-	virtual void GridItemPositioning();
-	virtual std::string Prepare_Grid();											
-private:
-	virtual void GameConditions();
-	virtual void GameRules();  //can make vertual and reuse but chnage form, rename to fit function name properly 
-	virtual void EndGame();
-	Player * player;
-	Person person;
-	Bolder bolder;
-	GridBorder gridb_;
-	Key gridkey;
-	Gate gate;
-
-	void PlayerEscaped();
-	bool person_escaped() const;
-	bool game_ended(char key);
 	bool isArrowKeyCode(int Keycode);
-
-	//data
-	bool escaped = false;
-	//symbols(chars)
-	const char BOLDER = 'B';
-	const char FREECELL = '*';
-	const char GAMEBOARDBORDER = '0';
-	const char PERSON = 'P';
-	const char GRIDBOARDER = 'O';
-	const char GRIDKEY = 'K';
-	const char GATE = 'G';
-	const int SIZE = 20;
-	int key;
-	int GameResults = 0;
+private:
+	int key = 0;
+	Player* player;
+protected:
+	Application* app;
+	std::string title;
 };
