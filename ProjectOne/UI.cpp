@@ -9,13 +9,14 @@ void UserInterface::GettingUser(std::string & username)
 	std::cin >> username;
 }
 
-void UserInterface::GameData(std::string name, int score)
+void UserInterface::GameData(std::string name, int score, std::string& Level)
 {
 	std::cout << std::endl;
-	std::cout << "******************************" << std::endl;
+	std::cout << "********************" << std::endl;
+	std::cout << "*     " << Level << "     *" << std::endl;
 	std::cout << "* PlayerName: " << name << std::endl;
 	std::cout << "* Score: " << score << std::endl;
-	std::cout << "******************************" << std::endl;
+	std::cout << "********************" << std::endl;
 }
 
 void UserInterface::EndGameMessages(int& GameResults, int& score)
@@ -60,11 +61,6 @@ int UserInterface::GetKeypressFromUser() const
 	return(toupper(keyPress));
 }
 
-void UserInterface::OutputLevel(std::string& leveltitle) const
-{
-	std::cout << "*      " << leveltitle << "      *" << std::endl;
-}
-
 void UserInterface::CreatePlayer(std::string & name, std::string & username, std::string & password)
 {
 	std::cout << "******************************" << std::endl;
@@ -73,4 +69,36 @@ void UserInterface::CreatePlayer(std::string & name, std::string & username, std
 	std::cout << "* Please enter a password: " << std::endl;
 	std::cin >> password;
 	std::cout << "******************************" << std::endl;
+}
+
+void UserInterface::ClearScreen()
+{
+#if defined _WIN32 || define _WIN64
+	//4 windows
+	system("CLS");
+#else
+	//4 mac or linux
+	system("CLEAR");
+#endif
+}
+
+void UserInterface::Line()
+{
+	std::cout << std::endl;
+}
+
+void UserInterface::Line(const std::string & text)
+{
+	std::cout << " " << text << std::endl;
+}
+
+void UserInterface::Option(int id, const std::string & option)
+{
+	std::cout << "  " << id << ") " << option << std::endl;
+}
+
+std::string UserInterface::Question(const std::string & question)
+{
+	std::cout << " " << question << ": ";
+	return ut.Getlinefromuser();
 }

@@ -8,13 +8,11 @@ void Game::SetUpGame()
 {
 	UserInterface ui;
 	GridItemPositioning();
-	//ui.OutputLevel(title);
 	ui.DrawGrid(Prepare_Grid());
-	ui.GameData(app->GetCurrentPlayer()->GetUsername(), app->GetCurrentPlayer()->GetScore());
+	ui.GameData(app->GetCurrentPlayer()->GetUsername(), app->GetCurrentPlayer()->GetScore(), title);
 	key = ui.GetKeypressFromUser();
 	GameRules();
 	GameConditions();		
-	//ui.OutputLevel(title);
 	ui.DrawGrid(Prepare_Grid());
 	EndGame();
 }

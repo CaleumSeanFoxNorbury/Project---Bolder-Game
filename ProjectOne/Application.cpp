@@ -62,6 +62,18 @@ void Application::LogIn(Player * currentplayer)
 	PlayerIsLoggedIn = true;
 }
 
+void Application::LogInDefaultUser()
+{
+	std::string name = "DefaultUser", pw = "password";
+	int score = 0;
+
+	Player * DefaultUser = new Player(name, score, name, pw);
+	AddNewUser(DefaultUser);
+
+	this->currentPlayer = DefaultUser;
+	PlayerIsLoggedIn = true;
+}
+
 void Application::logOut()
 {
 	PlayerIsLoggedIn = false;

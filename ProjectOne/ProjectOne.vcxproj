@@ -123,13 +123,16 @@
     <ClCompile Include="GridBorder.cpp" />
     <ClCompile Include="GridItem.cpp" />
     <ClCompile Include="Key.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MoveableGridItem.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RandomNumberaGenerator.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StartGame.cpp" />
+    <ClCompile Include="StartMenu.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -141,12 +144,15 @@
     <ClInclude Include="GridItem.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="MoveableGridItem.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RandomNumberaGenerator.h" />
     <ClInclude Include="StartGame.h" />
+    <ClInclude Include="StartMenu.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

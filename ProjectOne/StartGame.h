@@ -14,9 +14,9 @@ class StartGame : Game {
 public:
 	StartGame(const std::string&, Application*);
 
+private:
 	void GridItemPositioning() final;
 	std::string Prepare_Grid() final;
-private:
 	void GameConditions() final;
 	void GameRules() final;  
 	void EndGame() final;
@@ -32,9 +32,8 @@ private:
 	Key gridkey;
 	Gate gate;
 
-	//data
 	bool escaped = false;
-	//symbols(chars)
+
 	const char BOLDER = 'B';
 	const char FREECELL = '*';
 	const char GAMEBOARDBORDER = '0';

@@ -1,6 +1,6 @@
 #include "Bolder.h"
 
-Bolder::Bolder(const char symbol) : MoveableGridItem(rng.GetRandomValue(20), rng.GetRandomValue(20), symbol)
+Bolder::Bolder(const char symbol) : symbol(symbol), MoveableGridItem(rng.GetRandomValue(20), rng.GetRandomValue(20), symbol)
 {
 }
 

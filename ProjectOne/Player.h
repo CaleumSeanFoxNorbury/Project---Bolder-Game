@@ -11,8 +11,7 @@ public:
 	std::string getName() const; 
 	const std::string& GetUsername() const;
 	const std::string& GetPassword() const;
-	const int GetScore() const;
-	
+	const int GetScore() const;	
 	void UpdateScore(int&);
 	
 private:

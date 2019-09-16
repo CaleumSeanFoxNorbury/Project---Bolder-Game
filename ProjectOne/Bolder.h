@@ -8,8 +8,9 @@ public:
 	void MoveBolder();
 	void BounceOffObjects();
 	int setupBolder();
-	int direction_choice = 0;
 	void GatherKey(int&, int&);
+	
+	int direction_choice = 0;
 private:
 	RNG rng;
 	void set_direction(int& bx, int& by);
@@ -17,4 +18,6 @@ private:
 	void Bounce();
 	int bolder_x;
 	int bolder_y;
+	
+	const char symbol = 'B';
 };

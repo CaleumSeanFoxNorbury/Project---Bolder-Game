@@ -19,6 +19,7 @@ public:
 	void AddNewUser(Player*);
 
 	void LogIn(Player*);
+	void LogInDefaultUser();
 	void logOut();
 
 	Player* GetCurrentPlayer();

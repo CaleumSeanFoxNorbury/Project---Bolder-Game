@@ -2,8 +2,7 @@
 
 StartGame::StartGame(const std::string& title, Application *app) : Game(title, app), person(PERSON), bolder(BOLDER), 
 gridb_(GRIDBOARDER), gridkey(GRIDKEY), gate(GATE)
-{
-	
+{	
 		SetUpGame();	
 }
 
@@ -34,6 +33,7 @@ std::string StartGame::Prepare_Grid()
 					{
 						if ((row == bolder.Get_X()) && (col == bolder.Get_Y()))/*this is where my code swopped its x and ys*/ {
 							os << BOLDER;
+							//os << bolder.GetSymbol();
 						}
 						else {
 							if ((row == gridkey.Get_Y()) && (col == gridkey.Get_X()) && (!gridkey.PersonCollected())) {
@@ -89,9 +89,8 @@ void StartGame::GameConditions()
 		//}
 		if (isArrowKeyCode(key)) {
 			person.scamper(key);
-			//ui_G2.OutputLevel(title);
 			ui_G2.DrawGrid(Prepare_Grid());	
-			ui_G2.GameData(app->GetCurrentPlayer()->getName(), app->GetCurrentPlayer()->GetScore()); 
+			ui_G2.GameData(app->GetCurrentPlayer()->getName(), app->GetCurrentPlayer()->GetScore(), title); 
 			GameRules();
 		}
 	key = ui_G2.GetKeypressFromUser();
@@ -126,7 +125,6 @@ void StartGame::EndGame()
 		int EndgameData = 1;
 		app->GetCurrentPlayer()->UpdateScore(EndgameData);
 		ui_G2.EndGameMessages(GameResults, EndgameData);
-		//run anpther fuction within another class to passover to gamestore two
 	}
 	else {
 		GameResults = 1;
