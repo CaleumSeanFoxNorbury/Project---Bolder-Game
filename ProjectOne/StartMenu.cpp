@@ -1,6 +1,6 @@
 #include "StartMenu.h"
 
-StartMenu::StartMenu(std::string & title, Application * app) : Menu(title, app)
+StartMenu::StartMenu(const std::string & title, Application * app) : Menu(title, app)
 {
 	DisplayMenu();
 }
@@ -11,10 +11,12 @@ void StartMenu::OutputMenuOptions()
 		ui_M.Option(1, "Start Game");
 		ui_M.Option(2, "LogIn");
 		ui_M.Option(3, "Create an Account");
+		ui_M.Option(5, "Choose Level");		//REMOVE
+
 	}
 	if (app->IsUserLoggedIn()) {
 		ui_M.Option(4, "Start/Resume Game");//TODO
-		ui_M.Option(5, "Choose Level");		//TODO
+		ui_M.Option(5, "Choose Level");		
 		ui_M.Option(6, "Profile Menu");		//TODO
 		ui_M.Option(7, "LogOut");			//TODO
 		ui_M.Option(8, "Settings");			//restart game and more TODO
@@ -26,16 +28,9 @@ bool StartMenu::HandleMenuOption(char choice)
 	switch (choice) {
 	case '1': {
 		char carry_on;
+		app->LogInDefaultUser();		
 		do {
-			if (app->IsUserLoggedIn()) {
-				//app.Load(app);			//TODO	maybe only include load when logged in and on case 4
-			}
-			if (!app->IsUserLoggedIn()) {
-				app->LogInDefaultUser();
-			}
-			StartGame("LevelOne", app);
-
-			//app.Save(app); // this is causing trouble not working properly	//TODO same with mote on load 
+			StartGame("LevelOne", app); 
 			std::cout << "Play again? (Y/N): ";
 			std::cin >> carry_on;
 			if (tolower(carry_on) == 'n') {
@@ -96,6 +91,23 @@ bool StartMenu::HandleMenuOption(char choice)
 			}
 		} while (tolower(carry_on) == 'y');
 		ui_M.Hold_Window();
+		break;
+	}
+	case '5': {
+		if (!app->IsUserLoggedIn()) {
+			app->LogInDefaultUser();	//REMOVE THIS 
+		}
+		ui_M.ClearScreen();
+		switch (ui_M.ChooseLevel()) {
+		case'1': {
+				StartGame("StartGame", app);
+				break;
+			}
+		case'2': {
+			ChapterTwo("ChapterTwo", app);
+			break;
+		}
+		}
 		break;
 	}
 	}

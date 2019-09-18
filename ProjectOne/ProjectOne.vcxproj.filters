@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Menus">
       <UniqueIdentifier>{4216efb4-9e34-49b0-8e06-846795c0cd21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Grid Objects\GameOne Objects">
+      <UniqueIdentifier>{9fdb78c1-098f-4d5e-9229-d6ef05fae48e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Grid Objects\GameOne Objects">
+      <UniqueIdentifier>{04daa287-a80e-4630-8b4a-033ae25cfd2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -51,32 +57,8 @@
     <ClCompile Include="UI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GridItem.cpp">
-      <Filter>Source Files\Grid Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveableGridItem.cpp">
-      <Filter>Source Files\Grid Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Person.cpp">
-      <Filter>Source Files\Grid Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="EscapeGame.cpp">
-      <Filter>Source Files\Grid Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Bolder.cpp">
-      <Filter>Source Files\Grid Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Key.cpp">
-      <Filter>Source Files\Grid Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Gate.cpp">
-      <Filter>Source Files\Grid Objects</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\Games</Filter>
-    </ClCompile>
-    <ClCompile Include="GridBorder.cpp">
-      <Filter>Source Files\Grid Objects</Filter>
     </ClCompile>
     <ClCompile Include="StartGame.cpp">
       <Filter>Source Files\Games</Filter>
@@ -99,34 +81,37 @@
     <ClCompile Include="StartMenu.cpp">
       <Filter>Source Files\Menus</Filter>
     </ClCompile>
+    <ClCompile Include="Bolder.cpp">
+      <Filter>Source Files\Grid Objects\GameOne Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="EscapeGame.cpp">
+      <Filter>Source Files\Grid Objects\GameOne Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Gate.cpp">
+      <Filter>Source Files\Grid Objects\GameOne Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GridItem.cpp">
+      <Filter>Source Files\Grid Objects\GameOne Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Key.cpp">
+      <Filter>Source Files\Grid Objects\GameOne Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GridBorder.cpp">
+      <Filter>Source Files\Grid Objects\GameOne Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveableGridItem.cpp">
+      <Filter>Source Files\Grid Objects\GameOne Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ChapterTwo.cpp">
+      <Filter>Source Files\Games</Filter>
+    </ClCompile>
+    <ClCompile Include="Person.cpp">
+      <Filter>Source Files\Grid Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UI.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EscapeGame.h">
-      <Filter>Header Files\Grid Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="GridItem.h">
-      <Filter>Header Files\Grid Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveableGridItem.h">
-      <Filter>Header Files\Grid Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Person.h">
-      <Filter>Header Files\Grid Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Bolder.h">
-      <Filter>Header Files\Grid Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="GridBorder.h">
-      <Filter>Header Files\Grid Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Key.h">
-      <Filter>Header Files\Grid Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Gate.h">
-      <Filter>Header Files\Grid Objects</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files\Games</Filter>
@@ -154,6 +139,33 @@
     </ClInclude>
     <ClInclude Include="StartMenu.h">
       <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Bolder.h">
+      <Filter>Header Files\Grid Objects\GameOne Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="EscapeGame.h">
+      <Filter>Header Files\Grid Objects\GameOne Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Gate.h">
+      <Filter>Header Files\Grid Objects\GameOne Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GridItem.h">
+      <Filter>Header Files\Grid Objects\GameOne Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>Header Files\Grid Objects\GameOne Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveableGridItem.h">
+      <Filter>Header Files\Grid Objects\GameOne Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GridBorder.h">
+      <Filter>Header Files\Grid Objects\GameOne Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ChapterTwo.h">
+      <Filter>Header Files\Games</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
+      <Filter>Header Files\Grid Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

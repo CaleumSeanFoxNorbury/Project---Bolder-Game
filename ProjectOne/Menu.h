@@ -8,7 +8,7 @@
 
 class Menu {
 public:
-	Menu(std::string&, Application *);
+	Menu(const std::string&, Application *);
 
 	void DisplayMenu();
 

@@ -10,29 +10,29 @@ MoveableGridItem::~MoveableGridItem()
 
 int MoveableGridItem::Get_X()
 {
-	return x;
+	return _x;
 }
 
 int MoveableGridItem::Get_Y()
 {
-	return y;
+	return _y;
 }
 
-bool const MoveableGridItem::IsAtPossition(int x_, int y_)
+bool const MoveableGridItem::IsAtPossition(int x, int y)
 {
-	return x_ == x && y_ == y;
+	return _x == x && _y == y;
 }
 
 void MoveableGridItem::Set_XY(int x_, int y_)
 {
-	x = x_;
-	y = y_;
+	_x = x_;
+	_y = y_;
 }
 
-void MoveableGridItem::Update_Position(int dx, int dy)
+void MoveableGridItem::Update_Position(int x, int y)
 {
-	x += dx;
-	y += dy;
+	_x += x;
+	_y += y;
 }
 
 void MoveableGridItem::RandomPosition()

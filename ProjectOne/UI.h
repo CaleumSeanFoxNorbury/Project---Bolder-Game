@@ -10,6 +10,8 @@
 
 class UserInterface {
 public:
+	//tesing function(REMOVE ONCE USED)
+	void Test();
 	//maybe sort these fucntions out
 	void GettingUser(std::string&);
 	void GameData(std::string, int, std::string&);
@@ -19,6 +21,8 @@ public:
 	int GetKeypressFromUser() const;
 	void CreatePlayer(std::string&, std::string&, std::string&);
 
+	char ChooseLevel();
+	char BetweenGameContinue();
 	void ClearScreen();
 	
 	void Line();

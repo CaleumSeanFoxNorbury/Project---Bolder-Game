@@ -14,11 +14,15 @@ public:
 	bool const IsAtPossition(int, int);
 	void Set_XY(int, int);
 	void Update_Position(int, int);
+	//positioning 
 	void RandomPosition();
+	void GRIDTWO_RandomPositon();
+	//
+
 	friend std::ostream& operator<<(std::ostream & os, MoveableGridItem & rhs);
 private:
 	RNG rng;
-	int x, y;
+	//int x, y;
 	int _x;
 	int _y;
 };

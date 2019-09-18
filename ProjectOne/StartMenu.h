@@ -7,7 +7,7 @@
 #include"Application.h"
 class StartMenu : public Menu {
 public:
-	StartMenu(std::string&, Application*);
+	StartMenu(const std::string&, Application*);
 	void OutputMenuOptions() final;
 	bool HandleMenuOption(char) final;
 };

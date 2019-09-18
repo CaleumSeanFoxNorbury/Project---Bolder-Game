@@ -10,14 +10,13 @@ int main() {
 	UserInterface ui;
 	Application app;
 
-	std::string title = "STARTMENU";
 	std::string name = "caleum";
 	int score = 0;
 
 	Player * caleum = new Player(name, score, name, name);
 	app.AddNewUser(caleum);
 
-	StartMenu(title, &app);
+	StartMenu("StartMenu", &app);
 
 	return(0);
 }

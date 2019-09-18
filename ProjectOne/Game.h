@@ -1,7 +1,7 @@
 #pragma once
 #include"Application.h"
 #include"UI.h"
-#include"Player.h"
+#include"Person.h"
 
 #include<assert.h>
 #include<string>
@@ -22,15 +22,17 @@ public:
 	void SetUpGame();
 	virtual void GridItemPositioning() = 0;
 	virtual std::string Prepare_Grid() = 0;											
-	virtual void GameRules() = 0;  //can make vertual and reuse but chnage form, rename to fit function name properly 
+	virtual void GameRules() = 0;  
 	virtual void GameConditions() = 0;
 	virtual void EndGame() = 0;
-
+	virtual bool game_ended(char) = 0;
+	
 	bool isArrowKeyCode(int Keycode);
-private:
-	int key = 0;
-	Player* player;
 protected:
+	Player* player;
 	Application* app;
+	Person person = 'P';
 	std::string title;
+private:
+	int key;
 };

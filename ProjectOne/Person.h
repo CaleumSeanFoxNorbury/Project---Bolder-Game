@@ -1,5 +1,4 @@
 #pragma once
-
 #include"MoveableGridItem.h"
 #include"RandomNumberaGenerator.h"
 #include"Gate.h"
@@ -12,9 +11,9 @@
 class Person : public MoveableGridItem {
 public:
 	Person(char const);
-	void scamper(char k); //will be inherited in stage two
+	void scamper(char k, std::string&); 
 	bool IsStillAlive() const;
-	bool GateOpen() const; //can be virutal for stage two (game two)
+	bool GateOpen() const; 
 	void Die();
 	void OpenGate();
 private:
@@ -22,7 +21,7 @@ private:
 	Gate gate;
 	bool HasKey = false;
 	bool alive = true;
+
 	int person_x;
 	int person_y;
-
 };

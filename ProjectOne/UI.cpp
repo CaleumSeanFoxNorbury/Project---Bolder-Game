@@ -1,6 +1,12 @@
 #include "UI.h"
 
 
+void UserInterface::Test()
+{
+	std::cout << "TESTING WORKED" << std::endl;
+	Hold_Window();
+}
+
 void UserInterface::GettingUser(std::string & username)
 {
 	std::cout << "********************************" << std::endl;
@@ -69,6 +75,26 @@ void UserInterface::CreatePlayer(std::string & name, std::string & username, std
 	std::cout << "* Please enter a password: " << std::endl;
 	std::cin >> password;
 	std::cout << "******************************" << std::endl;
+}
+
+
+
+char UserInterface::ChooseLevel()
+{
+	Line("***************************");
+	Line("* Please Select a level:  *");
+	Option(1, "Level One(Escape The Temple)");
+	Option(2, "Level Two(Shadow Town)");
+	return ut.getCHARfromuser();
+}
+
+char UserInterface::BetweenGameContinue()
+{
+	char choice;
+	Line();
+	std::cout << "Would you like to continue to the next game?  ";
+	std::cin >> choice;
+	return choice;
 }
 
 void UserInterface::ClearScreen()

@@ -1,11 +1,10 @@
 #include "StartGame.h"
 
-StartGame::StartGame(const std::string& title, Application *app) : Game(title, app), person(PERSON), bolder(BOLDER), 
+StartGame::StartGame(const std::string& title, Application *app) : Game(title, app), bolder(BOLDER), 
 gridb_(GRIDBOARDER), gridkey(GRIDKEY), gate(GATE)
 {	
-		SetUpGame();	
+	SetUpGame();	
 }
-
 
 void StartGame::GridItemPositioning()
 {
@@ -21,32 +20,25 @@ std::string StartGame::Prepare_Grid()
 	std::ostringstream os;
 	for (int row(1); row <= SIZE; ++row) {
 		for (int col(1); col <= SIZE; ++col){
-			for (int i(0); i < gridb_.border.size(); i++) {
-				if ((row == gridb_.border[i].Get_X()) && (col == gridb_.border[i].Get_Y())) {
-					os << gridb_.border[i];
+			if ((row == person.Get_Y()) && (col == person.Get_X())) {
+				os << person;
+			}
+			else
+			{
+				if ((row == bolder.Get_X()) && (col == bolder.Get_Y()))/*this is where my code swopped its x and ys*/ {
+					os << BOLDER;
+					//os << bolder.GetSymbol();
 				}
 				else {
-					if ((row == person.Get_Y()) && (col == person.Get_X())) {
-						os << PERSON;
+					if ((row == gridkey.Get_Y()) && (col == gridkey.Get_X()) && (!gridkey.PersonCollected())) {
+						os << GRIDKEY;
 					}
-					else
-					{
-						if ((row == bolder.Get_X()) && (col == bolder.Get_Y()))/*this is where my code swopped its x and ys*/ {
-							os << BOLDER;
-							//os << bolder.GetSymbol();
+					else {
+						if ((row == gate.Get_X()) && (col == gate.Get_Y()) && (gridkey.PersonCollected())) {
+							os << GATE;
 						}
 						else {
-							if ((row == gridkey.Get_Y()) && (col == gridkey.Get_X()) && (!gridkey.PersonCollected())) {
-								os << GRIDKEY;
-							}
-							else {
-								if ((row == gate.Get_X()) && (col == gate.Get_Y()) && (gridkey.PersonCollected())) {
-									os << GATE;
-								}
-								else {
-									os << FREECELL;
-								}
-							}
+							os << FREECELL;
 						}
 					}
 				}
@@ -59,42 +51,32 @@ std::string StartGame::Prepare_Grid()
 
 void StartGame::GameConditions()
 {
-	//something on this function isnt working properly
-	while (!game_ended(key)) {
-		if ((!gridkey.BolderCollected()) && (!person.GateOpen())) {
-			int gridKeyx = 0; int gridKeyy = 0;
-			gridKeyx = gridkey.Get_X();
-			gridKeyy = gridkey.Get_Y();
-			bolder.GatherKey(gridKeyx, gridKeyy);
-		}
-		if ((gridkey.BolderGotKey()) && (!person.GateOpen())) {
-			bolder.MoveBolder();
-			gridkey.SpotBolder(&bolder);
-			gridkey.Follow_Bolder();
-		}
-		if ((person.GateOpen()) && (!gridkey.BolderGotKey())) {
-			bolder.MoveBolder();
-			gridkey.SpotBolder(&bolder);
-			gridkey.Follow_Bolder();
-		}
-		if ((gridkey.BolderGotKey()) && (person.GateOpen())) {
-			bolder.MoveBolder();
-			gridkey.SpotBolder(&bolder);
-			gridkey.Follow_Bolder();
-		}
-		//	APPLY BOLDER COLLECTED KEY FUNCTION THAT FOLLOWS BOLDER
-		//if (eachcircle == 10) {
-			//move direction 
-			//also allow bolders special moves after so long on the game
-		//}
-		if (isArrowKeyCode(key)) {
-			person.scamper(key);
-			ui_G2.DrawGrid(Prepare_Grid());	
-			ui_G2.GameData(app->GetCurrentPlayer()->getName(), app->GetCurrentPlayer()->GetScore(), title); 
-			GameRules();
-		}
-	key = ui_G2.GetKeypressFromUser();
+	if ((!gridkey.BolderCollected()) && (!person.GateOpen())) {
+		int gridKeyx = 0; int gridKeyy = 0;
+		gridKeyx = gridkey.Get_X();
+		gridKeyy = gridkey.Get_Y();
+		bolder.GatherKey(gridKeyx, gridKeyy);
 	}
+	if ((gridkey.BolderGotKey()) && (!person.GateOpen())) {
+		bolder.MoveBolder();
+		gridkey.SpotBolder(&bolder);
+		gridkey.Follow_Bolder();
+	}
+	if ((person.GateOpen()) && (!gridkey.BolderGotKey())) {
+		bolder.MoveBolder();
+		gridkey.SpotBolder(&bolder);
+		gridkey.Follow_Bolder();
+	}
+	if ((gridkey.BolderGotKey()) && (person.GateOpen())) {
+		bolder.MoveBolder();
+		gridkey.SpotBolder(&bolder);
+		gridkey.Follow_Bolder();
+	}
+	//	APPLY BOLDER COLLECTED KEY FUNCTION THAT FOLLOWS BOLDER
+	//if (eachcircle == 10) {
+		//move direction 
+		//also allow bolders special moves after so long on the game
+	//}
 }
 
 void StartGame::GameRules()
@@ -125,6 +107,22 @@ void StartGame::EndGame()
 		int EndgameData = 1;
 		app->GetCurrentPlayer()->UpdateScore(EndgameData);
 		ui_G2.EndGameMessages(GameResults, EndgameData);
+		if (tolower(ui_G2.BetweenGameContinue()) == 'y') {
+			char carry_on;
+			do {
+				ChapterTwo("ChapterTwo", app);
+				std::cout << "Play again? (Y/N): ";
+				std::cin >> carry_on;
+
+			} while (tolower(carry_on) == 'y');
+			if (tolower(carry_on) == 'n') {
+				StartMenu("StartMenu", app);
+			}
+			ui_G2.Hold_Window();
+		}
+		else {
+			StartMenu("StartMenu", app);
+		}
 	}
 	else {
 		GameResults = 1;

@@ -1,6 +1,6 @@
 #include "Menu.h"
 
-Menu::Menu(std::string & title, Application * app) : _title(title), app(app)
+Menu::Menu(const std::string & title, Application * app) : _title(title), app(app)
 {
 
 }

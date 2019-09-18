@@ -5,7 +5,7 @@ Person::Person(const char symbol) : MoveableGridItem(rng_.GetRandomValue(20), rn
 {
 }
 
-void Person::scamper(char k)
+void Person::scamper(char k, std::string& game)
 {
 	switch (k) {
 	case LEFT:
@@ -25,15 +25,16 @@ void Person::scamper(char k)
 		person_y = +1;
 		break;
 	}
-	//UPDATE CO-ORDIATES(PRE-conditions)
-	if (((Get_X() + person_x) == gate.Get_X()) && ((Get_Y() + person_y) == gate.Get_Y())) {
-		if (GateOpen()) {
+	if (game == "LevelOne") {	//replace this title everywhere
+		if (((Get_X() + person_x) >= 1) && ((Get_X() + person_x) <= 20) &&
+			((Get_Y() + person_y) >= 1) && ((Get_Y() + person_y) <= 20))
+		{
 			Update_Position(person_x, person_y);
 		}
 	}
-	else {
-		if (((Get_X() + person_x) >= 1) && ((Get_X() + person_x) <= 20) &&
-			((Get_Y() + person_y) >= 1) && ((Get_Y() + person_y) <= 20))
+	if (game == "ChapterTwo") {
+		if (((Get_X() + person_x) >= 1) && ((Get_X() + person_x) <= 100) &&
+			((Get_Y() + person_y) >= 1) && ((Get_Y() + person_y) <= 100))
 		{
 			Update_Position(person_x, person_y);
 		}

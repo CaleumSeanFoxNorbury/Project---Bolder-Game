@@ -11,8 +11,17 @@ void Game::SetUpGame()
 	ui.DrawGrid(Prepare_Grid());
 	ui.GameData(app->GetCurrentPlayer()->GetUsername(), app->GetCurrentPlayer()->GetScore(), title);
 	key = ui.GetKeypressFromUser();
-	GameRules();
-	GameConditions();		
+	while (!game_ended(key)) {
+		GameConditions();
+		if (isArrowKeyCode(key)) {
+			person.scamper(key, title);
+			ui.DrawGrid(Prepare_Grid());
+			ui.GameData(app->GetCurrentPlayer()->GetUsername(), app->GetCurrentPlayer()->GetScore(), title);
+			GameRules();
+		}
+		key = ui.GetKeypressFromUser();
+	}
+	ui.ClearScreen();
 	ui.DrawGrid(Prepare_Grid());
 	EndGame();
 }

@@ -9,6 +9,8 @@
 #include"GridBorder.h"
 #include"Key.h"
 #include"Gate.h"
+#include"ChapterTwo.h"
+#include"StartMenu.h"
 
 class StartGame : Game {
 public:
@@ -20,13 +22,11 @@ private:
 	void GameConditions() final;
 	void GameRules() final;  
 	void EndGame() final;
-	
 	void PlayerEscaped();
 	bool person_escaped() const;
-	bool game_ended(char key);
-
+	bool game_ended(char key) final;
+	
 	UserInterface ui_G2;
-	Person person;
 	Bolder bolder;
 	GridBorder gridb_;
 	Key gridkey;
@@ -42,6 +42,7 @@ private:
 	const char GRIDKEY = 'K';
 	const char GATE = 'G';
 	const int SIZE = 20;
-	int key;
 	int GameResults = 0;
+
+	int key;
 };
