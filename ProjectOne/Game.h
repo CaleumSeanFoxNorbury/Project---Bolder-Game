@@ -1,4 +1,6 @@
 #pragma once
+//#include"SDL.h"
+
 #include"Application.h"
 #include"UI.h"
 #include"Person.h"
@@ -35,4 +37,11 @@ protected:
 	std::string title;
 private:
 	int key;
+
+
+	//frame delay
+	const int FramePerSecond = 60;
+	const int FrameDelay = 1000 / FramePerSecond;
+	int framestart;
+	int frametime;
 };
